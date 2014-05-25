@@ -28,10 +28,6 @@ App.SonglistRoute = Ember.Route.extend({
 });
 
 App.SongRoute = Ember.Route.extend({
-    /*
-    setupController: function(controller, song) {
-        controller.set('model', song);
-    },*/
     model: function(params) {
         return this.store.find('song', params.id);
     }
@@ -43,8 +39,6 @@ App.SongController = Ember.Controller.extend({
 
     // Metronome state
     isMetroStarted: false,
-    //bpb: 4,
-    //beatCount: 1,
     metronome: null,
 
     actions: {
@@ -92,12 +86,15 @@ App.SongController = Ember.Controller.extend({
 // Metronome
 
 function metroTick(beatCount) {
+    var media;
     if (beatCount == 1) {
-        document.getElementById('beepOne').play();
+        //document.getElementById('beepOne').play();
+        media = new Media('sounds/beepone.wav');
     } else {
-        document.getElementById('beep').play();
+        //document.getElementById('beep').play();
+        media = new Media('sounds/beep.wav');
     }
-
+    media.play();
 }
 
 var MetronomeService = Ember.Object.extend({
