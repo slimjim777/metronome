@@ -89,13 +89,21 @@ function metroTick(beatCount) {
     var media;
     if (beatCount == 1) {
         //document.getElementById('beepOne').play();
-        media = new Media('sounds/beepone.wav');
+        media = new Media(getPhoneGapPath() + 'beepone.wav');
     } else {
         //document.getElementById('beep').play();
-        media = new Media('sounds/beep.wav');
+        media = new Media(getPhoneGapPath() + 'beep.wav');
     }
     media.play();
 }
+
+function getPhoneGapPath() {
+
+    var path = window.location.pathname;
+    path = path.substr( path, path.length - 10 );
+    return 'file://' + path;
+
+};
 
 var MetronomeService = Ember.Object.extend({
     _milli: 0,
